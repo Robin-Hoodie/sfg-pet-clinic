@@ -1,4 +1,4 @@
 package io.oreon.sfgpetclinic.model;
 
-public class Vet {
+public class Vet extends BaseEntity {
 }
