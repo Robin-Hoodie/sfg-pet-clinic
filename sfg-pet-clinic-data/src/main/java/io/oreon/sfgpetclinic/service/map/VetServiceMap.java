@@ -1,9 +1,11 @@
 package io.oreon.sfgpetclinic.service.map;
 
 import io.oreon.sfgpetclinic.model.Vet;
-import io.oreon.sfgpetclinic.service.CrudService;
+import io.oreon.sfgpetclinic.service.VetService;
+import org.springframework.stereotype.Service;
 
-public class VetServiceMap extends AbstractMapService<Vet, Long> implements CrudService<Vet, Long> {
+@Service
+public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
     @Override
     public Vet save(Vet vet) {
         return super.save(vet.getId(), vet);
