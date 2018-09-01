@@ -1,9 +1,11 @@
 package io.oreon.sfgpetclinic.service;
 
+import io.oreon.sfgpetclinic.model.BaseEntity;
+
 import java.util.Optional;
 import java.util.Set;
 
-public interface CrudService<T, ID> {
+public interface CrudService<T extends BaseEntity, ID> {
 
     Set<T> findAll();
 
