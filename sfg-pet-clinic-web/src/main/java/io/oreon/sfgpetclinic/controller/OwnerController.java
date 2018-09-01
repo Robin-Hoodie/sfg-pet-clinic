@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/owners")
 public class OwnerController {
 
-    private OwnerService ownerService;
+    private final OwnerService ownerService;
 
     @Autowired
     public OwnerController(OwnerService ownerService) {
