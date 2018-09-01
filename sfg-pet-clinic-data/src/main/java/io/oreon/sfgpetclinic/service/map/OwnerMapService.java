@@ -1,9 +1,11 @@
 package io.oreon.sfgpetclinic.service.map;
 
 import io.oreon.sfgpetclinic.model.Owner;
-import io.oreon.sfgpetclinic.service.CrudService;
+import io.oreon.sfgpetclinic.service.OwnerService;
+import org.springframework.stereotype.Service;
 
-public class OwnerMapService extends AbstractMapService<Owner, Long> implements CrudService<Owner, Long> {
+@Service
+public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerService {
 
     @Override
     public Owner save(Owner entity) {
@@ -13,5 +15,10 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
     @Override
     public void delete(Owner owner) {
         super.delete(owner);
+    }
+
+    @Override
+    public Owner findByLastName() {
+        throw new UnsupportedOperationException();
     }
 }
