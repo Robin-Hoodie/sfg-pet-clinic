@@ -1,8 +1,10 @@
 package io.oreon.sfgpetclinic.bootstrap;
 
 import io.oreon.sfgpetclinic.model.Owner;
+import io.oreon.sfgpetclinic.model.PetType;
 import io.oreon.sfgpetclinic.model.Vet;
 import io.oreon.sfgpetclinic.service.OwnerService;
+import io.oreon.sfgpetclinic.service.PetTypeService;
 import io.oreon.sfgpetclinic.service.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -12,17 +14,28 @@ public class DataLoader implements CommandLineRunner {
 
     private final OwnerService ownerService;
     private final VetService vetService;
+    private final PetTypeService petTypeService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
+        this.petTypeService = petTypeService;
     }
 
     @Override
     public void run(String... args) throws Exception {
-        Owner owner = new Owner("Michael", "Weston");
+
+        PetType dogPeteType = new PetType("Dog");
+        dogPeteType = petTypeService.save(dogPeteType);
+
+        PetType catPetType = new PetType("Cat");
+        catPetType = petTypeService.save(catPetType);
+
+        System.out.println("Loaded pet types...");
+
+        Owner owner = new Owner("Sherlock", "Holmes", "Baker Street 13B", "London", "02 376 43 12");
         ownerService.save(owner);
-        owner = new Owner("Fiona", "Glennane");
+        owner = new Owner("Bat", "Man", "Castle Road 1", "Gotham", "06 666 66 66");
         ownerService.save(owner);
 
         System.out.println("Loaded owners..");
