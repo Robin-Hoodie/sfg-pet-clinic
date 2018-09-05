@@ -1,12 +1,12 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" th:replace="~{fragments/layout :: layout (~{::body},'vets')}">
 <head>
     <meta charset="UTF-8"/>
     <title>Vets</title>
 </head>
 <body>
-    <h1>List of Pet Owners</h1>
-    <table>
+    <h2>List of Pet Owners</h2>
+    <table class="table table-striped">
         <thead>
         <tr>
             <th>Id</th>
