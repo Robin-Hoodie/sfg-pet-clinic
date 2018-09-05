@@ -1,6 +1,7 @@
 package io.oreon.sfgpetclinic.bootstrap;
 
 import io.oreon.sfgpetclinic.model.Owner;
+import io.oreon.sfgpetclinic.model.Pet;
 import io.oreon.sfgpetclinic.model.PetType;
 import io.oreon.sfgpetclinic.model.Vet;
 import io.oreon.sfgpetclinic.service.OwnerService;
@@ -8,6 +9,8 @@ import io.oreon.sfgpetclinic.service.PetTypeService;
 import io.oreon.sfgpetclinic.service.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -25,18 +28,24 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        PetType dogPeteType = new PetType("Dog");
-        dogPeteType = petTypeService.save(dogPeteType);
+        PetType dogPetType = new PetType("Dog");
+        dogPetType = petTypeService.save(dogPetType);
 
         PetType catPetType = new PetType("Cat");
         catPetType = petTypeService.save(catPetType);
 
-        System.out.println("Loaded pet types...");
+        System.out.println("Loaded pet types... ");
 
         Owner owner = new Owner("Sherlock", "Holmes", "Baker Street 13B", "London", "02 376 43 12");
+        Pet dog = new Pet(LocalDate.now(), dogPetType, owner, "Rosco");
+        owner.addPet(dog);
         ownerService.save(owner);
         owner = new Owner("Bat", "Man", "Castle Road 1", "Gotham", "06 666 66 66");
+        Pet cat = new Pet(LocalDate.now(), catPetType, owner, "Spooky");
+        owner.addPet(cat);
         ownerService.save(owner);
+
+
 
         System.out.println("Loaded owners..");
 
